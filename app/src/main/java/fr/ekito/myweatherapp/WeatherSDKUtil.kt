@@ -50,7 +50,7 @@ object WeatherSDKUtil {
     if (weather == null) {
       return ArrayList()
     }
-    
+
     return weather.forecast.simpleforecast.forecastday
         .map {
           DailyForecastModel(it.conditions, getWeatherCode(it.icon), it.low.celsius,
