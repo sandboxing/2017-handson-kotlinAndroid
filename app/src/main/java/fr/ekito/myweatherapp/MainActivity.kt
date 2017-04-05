@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity(), MainActivityWeatherCallback {
 
     setSupportActionBar(toolbar)
 
-    weather_main_layout!!.visibility = View.GONE
-    weather_forecast_layout!!.visibility = View.GONE
+    weather_main_layout.visibility = View.GONE
+    weather_forecast_layout.visibility = View.GONE
 
     val fab = findViewById(R.id.fab) as FloatingActionButton
     fab.setOnClickListener { view -> DialogHelper.locationDialog(view, this@MainActivity) }
@@ -99,26 +99,26 @@ class MainActivity : AppCompatActivity(), MainActivityWeatherCallback {
   fun updateWeatherUI(weather: Weather?, location: String) {
 
     if (weather != null) {
-      weather_main_layout!!.visibility = View.VISIBLE
-      weather_forecast_layout!!.visibility = View.VISIBLE
+      weather_main_layout.visibility = View.VISIBLE
+      weather_forecast_layout.visibility = View.VISIBLE
 
       val timeFormat = android.text.format.DateFormat.getTimeFormat(
           MainApplication.get())
       val dateFormat = android.text.format.DateFormat.getDateFormat(
           MainApplication.get())
-      weather_title!!.text = getString(
+      weather_title.text = getString(
           R.string.weather_title) + " " + location + "\n" + dateFormat.format(
           now) + " " + timeFormat.format(now)
 
       val forecasts = WeatherSDKUtil.getDailyForecasts(weather)
 
       if (forecasts.size == 4) {
-        setForecastForToday(forecasts[0], weather_main_text!!, weather_main_icon!!)
-        setForecastForDayX(forecasts[1], 1, weather_forecast_day1!!, weather_icon_day1!!,
+        setForecastForToday(forecasts[0], weather_main_text, weather_main_icon)
+        setForecastForDayX(forecasts[1], 1, weather_forecast_day1, weather_icon_day1,
             weather_temp_day1)
-        setForecastForDayX(forecasts[2], 2, weather_forecast_day2!!, weather_icon_day2!!,
+        setForecastForDayX(forecasts[2], 2, weather_forecast_day2, weather_icon_day2,
             weather_temp_day2)
-        setForecastForDayX(forecasts[3], 3, weather_forecast_day3!!, weather_icon_day3!!,
+        setForecastForDayX(forecasts[3], 3, weather_forecast_day3, weather_icon_day3,
             weather_temp_day3)
       }
     }
