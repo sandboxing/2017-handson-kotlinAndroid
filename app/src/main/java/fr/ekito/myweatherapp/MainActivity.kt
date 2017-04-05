@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.TextView
 import com.joanzapata.iconify.widget.IconTextView
 import fr.ekito.myweatherlibrary.WeatherSDK
+import fr.ekito.myweatherlibrary.json.geocode.Geocode
+import fr.ekito.myweatherlibrary.json.geocode.getLocation
 import fr.ekito.myweatherlibrary.json.weather.Weather
 import kotlinx.android.synthetic.main.activity_main.toolbar
 import kotlinx.android.synthetic.main.content_main.weather_forecast_day1
@@ -77,9 +79,7 @@ class MainActivity : AppCompatActivity(), MainActivityWeatherCallback {
     Snackbar.make(view, "Getting your weather :)", Snackbar.LENGTH_SHORT).show()
 
     WeatherSDK.getGeocode(location)
-        .map { geocode ->
-          WeatherSDKUtil.extractLocation(geocode)
-        }
+        .map(Geocode::getLocation)
         .switchMap { location ->
           WeatherSDK.getWeather(location!!.lat, location.lng)
         }

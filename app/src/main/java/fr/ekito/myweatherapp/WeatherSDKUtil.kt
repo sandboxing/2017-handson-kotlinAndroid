@@ -1,7 +1,5 @@
 package fr.ekito.myweatherapp
 
-import fr.ekito.myweatherlibrary.json.geocode.Geocode
-import fr.ekito.myweatherlibrary.json.geocode.Location
 import fr.ekito.myweatherlibrary.json.weather.Weather
 import java.util.ArrayList
 
@@ -41,10 +39,6 @@ object WeatherSDKUtil {
   private val WI_CLOUDY = "{wi_cloudy}"
   private val WI_FOG = "{wi_fog}"
   private val WI_DAY_CLOUDY = "{wi_day_cloudy}"
-
-  fun extractLocation(geocode: Geocode): Location? {
-    return geocode.results.firstOrNull()?.geometry?.location
-  }
 
   fun getDailyForecasts(weather: Weather?): List<DailyForecastModel> {
     if (weather == null) {
